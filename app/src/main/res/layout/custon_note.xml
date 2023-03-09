@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="6dp"
+    app:cardElevation="3dp"
     app:cardCornerRadius="12dp"
     app:cardUseCompatPadding="true">
 
@@ -20,7 +20,6 @@
         android:text="Title"
         android:layout_marginTop="6dp"
         android:textSize="20sp"
-
         />
 
     <TextView
