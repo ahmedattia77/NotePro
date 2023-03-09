@@ -19,7 +19,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
         return notes;
     }
 
-    public void setCars(List<Note> notes) {
+    public void setNotes(List<Note> notes) {
         this.notes = notes;
     }
 
