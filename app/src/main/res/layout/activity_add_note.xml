@@ -7,21 +7,43 @@
     android:orientation="vertical"
     tools:context=".add_note">
 
-    <ImageView
-        android:id="@+id/addNote_imageAdd_tv"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/baseline_check_24"
-        android:layout_marginEnd="6dp"
-        android:layout_marginTop="6dp"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:visibility="visible"
-        />
+        >
+
+        <ImageView
+            android:id="@+id/addNote_imageDelete_tv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/baseline_delete_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/addNote_imageAdd_tv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/baseline_check_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginTop="12dp"
     >
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -33,13 +55,22 @@
                 android:id="@+id/addNote_title_et"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="write a note"
+                android:textSize="20sp"
+                android:hint="Title"
                 android:gravity="start"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
+        <TextView
+            android:id="@+id/addNote_date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12sp"
+            android:gravity="start"
+            android:paddingStart="12dp"
+            android:padding="6dp"
+            />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -51,9 +82,9 @@
             android:id="@+id/addNote_description_et"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="write a note"
+            android:textSize="16sp"
+            android:hint="Start Typing ..."
             android:gravity="start"
-
             />
 
     </com.google.android.material.textfield.TextInputLayout>

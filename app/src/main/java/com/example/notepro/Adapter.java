@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,9 +26,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
     }
 
     RecycleAdapterOnClickListener recycleAdapterOnClickListener;
-    public Adapter(List<Note>notes , RecycleAdapterOnClickListener recycleAdapterOnClickListener) {
+//    RecycleAdapteronLongeClick recycleAdapteronLongeClick;
+    public Adapter(List<Note>notes , RecycleAdapterOnClickListener recycleAdapterOnClickListener /*, RecycleAdapteronLongeClick recycleAdapteronLongeClick*/) {
         this.notes = notes;
         this.recycleAdapterOnClickListener = recycleAdapterOnClickListener;
+//        this.recycleAdapteronLongeClick = recycleAdapteronLongeClick;
     }
 
     @NonNull
@@ -40,11 +44,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+//        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext() , android.R.anim.slide_in_left);
+        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext() , android.R.anim.fade_in);
+
         Note notes  = this.notes.get(position);
 
         holder.title.setText(notes.getTitle());
         holder.description.setText(notes.getDescription());
         holder.date.setText(notes.getDate());
+        holder.title.setTag(notes.getId());
+
+        holder.itemView.startAnimation(animation);
     }
 
     @Override
@@ -63,12 +73,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder>{
             description = itemView.findViewById(R.id.custom_description_tv);
             date = itemView.findViewById(R.id.custom_date_tv);
 
-            title.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     int currentNote = (int) title.getTag();
-                    recycleAdapterOnClickListener.inClickItem(currentNote);
+                    recycleAdapterOnClickListener.onClickItem(currentNote);
                 }
             });
         }

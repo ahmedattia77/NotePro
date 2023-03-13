@@ -15,10 +15,10 @@
             android:name=".add_note"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".splash"
             android:exported="false" />
         <activity
-            android:name=".splash"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -77,7 +77,8 @@ public class DataBase extends SQLiteOpenHelper {
         // sending dataInformation in the arr and send the array as a condition
         // we can't send the condition directly because it can be manipulated
         String args [] ={String.valueOf(notes.getId())};
-        int result = db.delete(TABLE_NAME,"id=? AND color",args);
+        int result = db.delete(TABLE_NAME,"id=?",args);
+
 
         return result > 0;
     }
@@ -104,6 +105,33 @@ public class DataBase extends SQLiteOpenHelper {
 
         return notes;
     }
+    public void  deleteAll() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME,null,null);
+        db.close();
+    }
+
+    public Note getNote(int noteId) {
+
+        Note note ;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+DataBase.TABLE_NAME+" WHERE "+DataBase.NOTE_CLN_TABLE_ID+"=?",new String[]{String.valueOf(noteId)});
+
+        if (cursor.moveToFirst()){
+
+            int id = cursor.getInt(0);
+            String title = cursor.getString(1);
+            String description = cursor.getString(2);
+            String date = cursor.getString(3);
+
+            note = new Note(id,title,description,date);
+            cursor.close();
+            return  note;
+        }
+
+        return null;
+    }
+
     public ArrayList<Note>  searchNotes(String modelSearch) {
         ArrayList<Note> notes = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
